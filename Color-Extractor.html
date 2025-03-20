@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Extract dominant colors from any image using our Image Color Extractor tool. Perfect for designers, artists, and developers. Upload an image and get a color palette instantly!">
+    <meta name="keywords" content="image color extractor, color palette generator, extract colors from image, color thief, web design tool, color scheme, image to color, hex color codes, rgb colors, design tools">
+    <meta name="author" content="YourBrand">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Image Color Extractor 🎨">
+    <meta property="og:description" content="Extract dominant colors from any image using our Image Color Extractor tool. Perfect for designers, artists, and developers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yourwebsite.com/image-color-extractor">
+    <meta property="og:image" content="https://www.yourwebsite.com/images/color-extractor-thumbnail.jpg">
+    <title>Image Color Extractor 🎨</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: linear-gradient(45deg, #007bff, #00d4ff);
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid #0056b3;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.8s ease-in-out;
+            position: relative;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        #uploaded-image {
+            max-width: 100%;
+            max-height: 200px;
+            display: none;
+            margin: 20px auto;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+        }
+        .palette {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+            border: 2px solid white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .color-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        input {
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            width: 90%;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .ad-space {
+            width: 100%;
+            height: 90px;
+            margin-top: 20px;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 16px;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        .footer {
+            background: #333;
+            color: white;
+            padding: 15px;
+            font-size: 14px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .ad-left, .ad-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 120px;
+            height: 240px;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 14px;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        .ad-left {
+            left: -140px;
+        }
+        .ad-right {
+            right: -140px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">🎨 Image Color Extractor</div>
+
+    <!-- Adsterra Ad Below Header -->
+    <div style="text-align: center; margin: 10px auto;">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'YOUR_ADSTERRA_AD_CODE_BELOW_HEADER',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+            document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.profitabledisplaynetwork.com/YOUR_ADSTERRA_AD_CODE_BELOW_HEADER/invoke.js"></scr' + 'ipt>');
+        </script>
+    </div>
+
+    <div class="container">
+        <!-- Left Side Ad -->
+        <div class="ad-left">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'YOUR_ADSTERRA_AD_CODE_LEFT',
+                    'format' : 'iframe',
+                    'height' : 240,
+                    'width' : 120,
+                    'params' : {}
+                };
+                document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.profitabledisplaynetwork.com/YOUR_ADSTERRA_AD_CODE_LEFT/invoke.js"></scr' + 'ipt>');
+            </script>
+        </div>
+
+        <h2>Upload an Image to Extract Colors</h2>
+        <input type="file" id="image-input" accept="image/*">
+        <img id="uploaded-image" alt="Uploaded Image">
+        <div id="color-palette" class="palette"></div>
+
+        <!-- Right Side Ad -->
+        <div class="ad-right">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'YOUR_ADSTERRA_AD_CODE_RIGHT',
+                    'format' : 'iframe',
+                    'height' : 240,
+                    'width' : 120,
+                    'params' : {}
+                };
+                document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.profitabledisplaynetwork.com/YOUR_ADSTERRA_AD_CODE_RIGHT/invoke.js"></scr' + 'ipt>');
+            </script>
+        </div>
+
+        <!-- Space for Ads -->
+        <div class="ad-space">Ad Space (728x90)</div>
+    </div>
+
+    <div class="footer">
+        © 2025 Image Color Extractor | Created by <a href="#">YourBrand</a>
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('image-input');
+        const uploadedImage = document.getElementById('uploaded-image');
+        const colorPalette = document.getElementById('color-palette');
+        const colorThief = new ColorThief();
+
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.style.display = 'block';
+
+                    uploadedImage.onload = function() {
+                        const colors = colorThief.getPalette(uploadedImage, 8); // Extract top 8 colors
+                        displayColors(colors);
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function displayColors(colors) {
+            colorPalette.innerHTML = '';
+            colors.forEach(color => {
+                const hexColor = rgbToHex(color[0], color[1], color[2]);
+                const colorBox = document.createElement('div');
+                colorBox.className = 'color-box';
+                colorBox.style.backgroundColor = hexColor;
+                colorBox.innerText = hexColor;
+                colorPalette.appendChild(colorBox);
+            });
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+        }
+    </script>
+
+</body>
+</html>
